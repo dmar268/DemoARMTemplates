@@ -6,7 +6,7 @@
 # Login-AzureRmAccount
 #Login-AzureRmAccount -TenantId 820b3df5-13d5-4f8e-ac93-dadcbfa444ff
 
-{
+
 
 $resourceGroupName = 'simple-iaas'
 $resourceProviderNamespace = 'Microsoft.Network'
@@ -25,7 +25,7 @@ $storageAccountNamePrefix = 'storage'
 $storageAccountType = 'Standard_LRS'
 $storageAccountName = $storageAccountNamePrefix + ($storageAccountType.Replace('Standard_','')).ToLower() + $randomString
 
-}
+
 
 ### Get ARM Provider Locations
 {
@@ -36,20 +36,20 @@ $storageAccountName = $storageAccountNamePrefix + ($storageAccountType.Replace('
 }
 
 ### Create ARM Resource Group
-{
+
 $resourceGroup = New-AzureRmResourceGroup `
     -Name $resourceGroupName `
     -Location $resourceGroupLocation `
     -Verbose -Force
 
 
-}
+
 
 
 New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
 
 ### Create Virtual Network Subnets
-{
+
 $vNetSubnet1 = New-AzureRmVirtualNetworkSubnetConfig `
     -Name $vNetSubnet1Name `
     -AddressPrefix $vNetSubnet1Prefix `
@@ -59,10 +59,10 @@ $vNetSubnet2 = New-AzureRmVirtualNetworkSubnetConfig `
     -Name $vNetSubnet2Name `
     -AddressPrefix $vNetSubnet2Prefix `
     -Verbose
-}
+
 
 ### Create Virtual Network
-{
+
 $vNet = New-AzureRmVirtualNetwork `
     -ResourceGroupName $resourceGroup.ResourceGroupName `
     -Location $resourceGroup.Location `
@@ -70,14 +70,13 @@ $vNet = New-AzureRmVirtualNetwork `
     -AddressPrefix $vNetAddressPrefix `
     -Subnet $vNetSubnet1,$vNetSubnet2 `
     -Verbose -Force
-}
+
 
 ### Create Storage Account
-{
+
 $storageAccount = New-AzureRmStorageAccount `
     -ResourceGroupName $resourceGroup.ResourceGroupName `
     -Location $resourceGroup.Location `
     -Name $storageAccountName `
     -Type $storageAccountType `
     -Verbose
-}

@@ -1,9 +1,9 @@
 ﻿### Define variables
 {
 $location = 'Australia Southeast'
-$resourceGroupName = 'pluralsight-arm-simple-paas-template'
-$resourceDeploymentName = 'pluralsight-arm-paas-template-deployment'
-$templatePath = $env:SystemDrive + '\pluralsight'
+$resourceGroupName = 'simple-iaas-template'
+$resourceDeploymentName = 'iaas-template-deployment'
+$templatePath = $env:SystemDrive + '\Code\GitHub\DemoARMTemplates\SimpleJSON'
 $templateFile = 'simplePaas.json'
 $template = $templatePath + '\' + $templateFile
 }

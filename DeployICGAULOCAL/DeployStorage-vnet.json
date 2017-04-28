@@ -1,0 +1,72 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sticgauvmstore11Type": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_ZRS",
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Premium_LRS"
+      ]
+    }
+
+  },
+  "variables": {
+    "vnet-icgaulocalPrefix": "20.0.0.0/16",
+    "vnet-icgaulocalSubnet1Name": "Subnet-1",
+    "vnet-icgaulocalSubnet1Prefix": "20.0.0.0/24",
+    "sticgauvmstore11Name": "sticgauvmstore11"
+
+    },
+  "resources": [
+    {
+      "name": "vnet-icgaulocal",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "vnet-icgaulocal"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('vnet-icgaulocalPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('vnet-icgaulocalSubnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('vnet-icgaulocalSubnet1Prefix')]"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "[variables('sticgauvmstore11Name')]",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-01-01",
+      "sku": {
+        "name": "[parameters('sticgauvmstore11Type')]"
+      },
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "sticgauvmstore11"
+      },
+      "kind": "Storage"
+    }
+    
+  
+
+  ],
+  "outputs": {
+
+  }
+}

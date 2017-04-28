@@ -5,9 +5,45 @@
 
   },
   "variables": {
+    "simple-vnet2Prefix": "10.0.0.0/16",
+    "simple-vnet2Subnet1Name": "Subnet-1",
+    "simple-vnet2Subnet1Prefix": "10.0.0.0/24",
+    "simple-vnet2Subnet2Name": "Subnet-2",
+    "simple-vnet2Subnet2Prefix": "10.0.1.0/24"
 
   },
   "resources": [
+    {
+      "name": "simple-vnet2",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "simple-vnet2"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('simple-vnet2Prefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('simple-vnet2Subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('simple-vnet2Subnet1Prefix')]"
+            }
+          },
+          {
+            "name": "[variables('simple-vnet2Subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('simple-vnet2Subnet2Prefix')]"
+            }
+          }
+        ]
+      }
+    }
 
   ],
   "outputs": {
