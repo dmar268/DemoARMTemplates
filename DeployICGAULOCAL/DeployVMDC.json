@@ -18,7 +18,7 @@
     },
     "dnsLabelPrefix": {
       "type": "string",
-      "defaultValue": "ICGAULCDC01",
+      "defaultValue": "icgaudc01",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
@@ -32,7 +32,9 @@
       ],
       "metadata": {
         "description": "Size of VM"
-      },
+      }
+    }
+    ,
       "windowsOSVersion": {
         "type": "string",
         "defaultValue": "2016-Datacenter",

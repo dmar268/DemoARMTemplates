@@ -29,7 +29,7 @@ New-AzureRmResourceGroupDeployment `
 $location = 'Australia Southeast'
 $resourceGroupName = 'RG-ICGAULOCAL'
 $resourceDeploymentName = 'ICGAULOCAL-deployment'
-$templatePath = $env:SystemDrive + '\Code\GitHub\DemoARMTemplates\DeployICGAULOCAL'
+$templatePath = $env:SystemDrive + '\Code\GitHub\DemoARMTemplates\DeployIget-rGAULOCAL'
 $templateFile = 'DeployVMDC.json'
 $template = $templatePath + '\' + $templateFile
 
@@ -49,3 +49,6 @@ New-AzureRmResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
     -TemplateFile $template `
     -Verbose -Force
+
+
+#Get-AzureRmVMSize -Location $location | Format-Table -Property Name, NumberOfCores, MemoryInMB
